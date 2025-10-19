@@ -23,6 +23,7 @@
 
 /* Defines ------------------------------------------------------------------*/
 /* STMicroelectronics.X-CUBE-MEMS1.11.3.0 */
+#define LSM6DSL_ACCGYR_I2C
 #define LIS3MDL_MAG_I2C
 #define HTS221_HUMTEMP_I2C
 

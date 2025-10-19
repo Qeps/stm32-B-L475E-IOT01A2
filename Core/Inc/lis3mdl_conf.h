@@ -9,7 +9,6 @@
 
 #include "lis3mdl.h"
 #include "b_l475e_iot01a2_bus.h"   // obsługa I2C/SPI z BSP
-#include "stm32l4xx_hal.h"
 
 #ifdef __cplusplus
 extern "C" {

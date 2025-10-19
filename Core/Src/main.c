@@ -24,6 +24,7 @@
 #include "math.h"
 #include "lis3mdl_conf.h"
 #include "hts221_conf.h"
+#include "lsm6dsl_conf.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -104,6 +105,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  BSP_I2C1_Init();
   MX_DFSDM1_Init();
   MX_QUADSPI_Init();
   MX_SPI3_Init();
@@ -111,8 +113,10 @@ int main(void)
   MX_USART3_UART_Init();
   MX_USB_OTG_FS_PCD_Init();
   /* USER CODE BEGIN 2 */
+  BSP_I2C2_Init();
   LIS3MDL_Platform_Init();
   HTS221_Platform_Init();
+  LSM6DSL_Platform_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -120,8 +124,9 @@ int main(void)
   while (1)
   {
 	  HTS221_Read_Data();
+	  LSM6DSL_Read_Data();
 	  LIS3MDL_Read_Magnetic();
-	  HAL_Delay(500);
+	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -577,14 +582,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : ARD_D15_Pin ARD_D14_Pin */
-  GPIO_InitStruct.Pin = ARD_D15_Pin|ARD_D14_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
