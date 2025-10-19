@@ -1,0 +1,51 @@
+# STM32CubeIDE build artifacts
+/Debug/
+/Release/
+/build/
+/out/
+/*.elf
+/*.hex
+/*.bin
+/*.map
+/*.lst
+/*.srec
+
+# CubeIDE project metadata
+/.settings/
+/.cproject
+/.project
+/.mxproject
+/.loadpath
+
+# STM32Cube auto-generated intermediate files
+*.launch
+*.log
+*.uvoptx
+*.uvprojx
+*.uvguix.*
+*.dep
+*.d
+*.o
+*.su
+*.cyclo
+*.gcno
+*.gcda
+
+# macOS / Windows / Linux junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python / temporary tools
+__pycache__/
+*.pyc
+
+# VS Code or other IDEs
+.vscode/
+.idea/
+
+# Backup or temp files
+*~
+*.bak
+*.swp
+*.tmp
