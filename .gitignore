@@ -12,9 +12,6 @@
 
 # CubeIDE project metadata
 /.settings/
-/.cproject
-/.project
-/.mxproject
 /.loadpath
 
 # STM32Cube auto-generated intermediate files
