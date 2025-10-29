@@ -55,10 +55,8 @@ UART_HandleTypeDef huart3;
 
 PCD_HandleTypeDef hpcd_USB_OTG_FS;
 
-char json_buffer[1024];
-
 /* USER CODE BEGIN PV */
-
+char json_buffer[1024];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
