@@ -25,6 +25,7 @@
 #include "lis3mdl_conf.h"
 #include "hts221_conf.h"
 #include "lsm6dsl_conf.h"
+#include "sensor_data.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,6 +54,8 @@ UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart3;
 
 PCD_HandleTypeDef hpcd_USB_OTG_FS;
+
+char json_buffer[1024];
 
 /* USER CODE BEGIN PV */
 
@@ -126,6 +129,15 @@ int main(void)
 	  HTS221_Read_Data();
 	  LSM6DSL_Read_Data();
 	  LIS3MDL_Read_Magnetic();
+
+	    while (1)
+	    {
+	        if (j_johnson(json_buffer, sizeof(json_buffer)) == 0)
+	        {
+	            HAL_UART_Transmit(&huart1, (uint8_t*)json_buffer, strlen(json_buffer), HAL_MAX_DELAY);
+	        }
+	        HAL_Delay(500);
+	    }
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
