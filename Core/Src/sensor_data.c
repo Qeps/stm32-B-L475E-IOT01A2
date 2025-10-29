@@ -57,8 +57,9 @@ int j_johnson(char *json_buffer, uint16_t buffer_size)
 
 
 
+
     // --- Sekcja LSM6DSL ---
-    offset += snprintf(json_buffer + offset, buffer_size - offset, "    \"LSM6DSL\": [\r\n");
+    offset += snprintf(json_buffer + offset, buffer_size - offset, " { \r\n    \"LSM6DSL\": \r\n");
 
     json_create("acc_x", data.acc_x, temp, sizeof(temp));
     offset += snprintf(json_buffer + offset, buffer_size - offset, "      %s,\r\n", temp);
@@ -73,10 +74,8 @@ int j_johnson(char *json_buffer, uint16_t buffer_size)
     json_create("gyro_z", data.gyro_z, temp, sizeof(temp));
     offset += snprintf(json_buffer + offset, buffer_size - offset, "      %s\r\n", temp);
 
-    offset += snprintf(json_buffer + offset, buffer_size - offset, "    ],\r\n");
-
     // --- Sekcja HTS221 ---
-    offset += snprintf(json_buffer + offset, buffer_size - offset, "    \"HTS221\": [\r\n");
+    offset += snprintf(json_buffer + offset, buffer_size - offset, "    \"HTS221\": \r\n");
 
     snprintf(temp, sizeof(temp), "{\"name\": \"temperature\", \"value\": %.f}", data.temperature);
     offset += snprintf(json_buffer + offset, buffer_size - offset, "      %s,\r\n", temp);
@@ -84,10 +83,9 @@ int j_johnson(char *json_buffer, uint16_t buffer_size)
     snprintf(temp, sizeof(temp), "{\"name\": \"humidity\", \"value\": %.f}", data.humidity);
     offset += snprintf(json_buffer + offset, buffer_size - offset, "      %s\r\n", temp);
 
-    offset += snprintf(json_buffer + offset, buffer_size - offset, "    ],\r\n");
 
     // --- Sekcja LIS3MDL ---
-    offset += snprintf(json_buffer + offset, buffer_size - offset, "    \"LIS3MDL\": [\r\n");
+    offset += snprintf(json_buffer + offset, buffer_size - offset, "    \"LIS3MDL\": \r\n");
 
     json_create("mag_x", data.mag_x, temp, sizeof(temp));
     offset += snprintf(json_buffer + offset, buffer_size - offset, "      %s,\r\n", temp);
@@ -96,10 +94,10 @@ int j_johnson(char *json_buffer, uint16_t buffer_size)
     json_create("mag_z", data.mag_z, temp, sizeof(temp));
     offset += snprintf(json_buffer + offset, buffer_size - offset, "      %s\r\n", temp);
 
-    offset += snprintf(json_buffer + offset, buffer_size - offset, "    ]\r\n");
+    offset += snprintf(json_buffer + offset, buffer_size - offset, "    \r\n");
 
     // --- Zamykanie JSON-a ---
-    snprintf(json_buffer + offset, buffer_size - offset, "  }\r\n}\r\n");
+    snprintf(json_buffer + offset, buffer_size - offset, "  }\r\n");
 
     return 0;
 }
