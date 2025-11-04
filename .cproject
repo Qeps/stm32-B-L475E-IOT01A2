@@ -23,7 +23,7 @@
 							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.fpu.1046268597" name="Floating-point unit" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.fpu" useByScannerDiscovery="true" value="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.fpu.value.fpv4-sp-d16" valueType="enumerated"/>
 							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.floatabi.152945095" name="Floating-point ABI" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.floatabi" useByScannerDiscovery="true" value="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.floatabi.value.hard" valueType="enumerated"/>
 							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.target_board.1974614667" name="Board" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.target_board" useByScannerDiscovery="false" value="B-L475E-IOT01A2" valueType="string"/>
-							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.defaults.1786287901" name="Defaults" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.defaults" useByScannerDiscovery="false" value="com.st.stm32cube.ide.common.services.build.inputs.revA.1.0.6 || Debug || true || Executable || com.st.stm32cube.ide.mcu.gnu.managedbuild.option.toolchain.value.workspace || B-L475E-IOT01A2 || 0 || 0 || arm-none-eabi- || ${gnu_tools_for_stm32_compiler_path} || ../Core/Inc | ../Drivers/STM32L4xx_HAL_Driver/Inc | ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy | ../Drivers/CMSIS/Device/ST/STM32L4xx/Include | ../Drivers/CMSIS/Include | ../Drivers/BSP/Components/lis3mdl | ../X-CUBE-MEMS1/Target | ../Drivers/BSP/B-L475E-IOT01A2 | ../Drivers/BSP/Components/hts221 | ../Drivers/BSP/Components/lsm6dsl ||  ||  || USE_HAL_DRIVER | STM32L475xx ||  || Drivers | X-CUBE-MEMS1 | Core/Startup | Core ||  ||  || ${workspace_loc:/${ProjName}/STM32L475VGTX_FLASH.ld} || true || NonSecure ||  || secure_nsclib.o ||  || None ||  ||  || " valueType="string"/>
+							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.defaults.1786287901" name="Defaults" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.defaults" useByScannerDiscovery="false" value="com.st.stm32cube.ide.common.services.build.inputs.revA.1.0.6 || Debug || true || Executable || com.st.stm32cube.ide.mcu.gnu.managedbuild.option.toolchain.value.workspace || B-L475E-IOT01A2 || 0 || 0 || arm-none-eabi- || ${gnu_tools_for_stm32_compiler_path} || ../Core/Inc | ../Drivers/STM32L4xx_HAL_Driver/Inc | ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy | ../Drivers/CMSIS/Device/ST/STM32L4xx/Include | ../Drivers/CMSIS/Include | ../Drivers/BSP/Components/lis3mdl | ../X-CUBE-MEMS1/Target | ../Drivers/BSP/B-L475E-IOT01A2 | ../Drivers/BSP/Components/hts221 | ../Drivers/BSP/Components/lsm6dsl | ../BlueNRG_MS/App | ../BlueNRG_MS/Target | ../Middlewares/ST/BlueNRG-MS/utils | ../Middlewares/ST/BlueNRG-MS/includes | ../Middlewares/ST/BlueNRG-MS/hci/hci_tl_patterns/Basic ||  ||  || USE_HAL_DRIVER | STM32L475xx ||  || BlueNRG_MS | Drivers | X-CUBE-MEMS1 | Core/Startup | Middlewares | Core ||  ||  || ${workspace_loc:/${ProjName}/STM32L475VGTX_FLASH.ld} || true || NonSecure ||  || secure_nsclib.o ||  || None ||  ||  || " valueType="string"/>
 							<option id="com.st.stm32cube.ide.mcu.debug.option.cpuclock.900116362" name="Cpu clock frequence" superClass="com.st.stm32cube.ide.mcu.debug.option.cpuclock" useByScannerDiscovery="false" value="80" valueType="string"/>
 							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.nanoprintffloat.353078863" name="Use float with printf from newlib-nano (-u _printf_float)" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.nanoprintffloat" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.targetplatform.20305293" isAbstract="false" osList="all" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.targetplatform"/>
@@ -54,6 +54,11 @@
 									<listOptionValue builtIn="false" value="../Drivers/BSP/B-L475E-IOT01A2"/>
 									<listOptionValue builtIn="false" value="../Drivers/BSP/Components/hts221"/>
 									<listOptionValue builtIn="false" value="../Drivers/BSP/Components/lsm6dsl"/>
+									<listOptionValue builtIn="false" value="../BlueNRG_MS/App"/>
+									<listOptionValue builtIn="false" value="../BlueNRG_MS/Target"/>
+									<listOptionValue builtIn="false" value="../Middlewares/ST/BlueNRG-MS/utils"/>
+									<listOptionValue builtIn="false" value="../Middlewares/ST/BlueNRG-MS/includes"/>
+									<listOptionValue builtIn="false" value="../Middlewares/ST/BlueNRG-MS/hci/hci_tl_patterns/Basic"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1587322788" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -80,8 +85,10 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="BlueNRG_MS"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="X-CUBE-MEMS1"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 					</sourceEntries>
 				</configuration>
@@ -110,7 +117,7 @@
 							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.fpu.904861353" name="Floating-point unit" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.fpu" useByScannerDiscovery="true" value="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.fpu.value.fpv4-sp-d16" valueType="enumerated"/>
 							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.floatabi.298816079" name="Floating-point ABI" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.floatabi" useByScannerDiscovery="true" value="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.floatabi.value.hard" valueType="enumerated"/>
 							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.target_board.1823909571" name="Board" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.target_board" useByScannerDiscovery="false" value="B-L475E-IOT01A2" valueType="string"/>
-							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.defaults.1990497290" name="Defaults" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.defaults" useByScannerDiscovery="false" value="com.st.stm32cube.ide.common.services.build.inputs.revA.1.0.6 || Release || false || Executable || com.st.stm32cube.ide.mcu.gnu.managedbuild.option.toolchain.value.workspace || B-L475E-IOT01A2 || 0 || 0 || arm-none-eabi- || ${gnu_tools_for_stm32_compiler_path} || ../Core/Inc | ../Drivers/STM32L4xx_HAL_Driver/Inc | ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy | ../Drivers/CMSIS/Device/ST/STM32L4xx/Include | ../Drivers/CMSIS/Include | ../Drivers/BSP/Components/lis3mdl | ../X-CUBE-MEMS1/Target | ../Drivers/BSP/B-L475E-IOT01A2 | ../Drivers/BSP/Components/hts221 | ../Drivers/BSP/Components/lsm6dsl ||  ||  || USE_HAL_DRIVER | STM32L475xx ||  || Drivers | X-CUBE-MEMS1 | Core/Startup | Core ||  ||  || ${workspace_loc:/${ProjName}/STM32L475VGTX_FLASH.ld} || true || NonSecure ||  || secure_nsclib.o ||  || None ||  ||  || " valueType="string"/>
+							<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.defaults.1990497290" name="Defaults" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.option.defaults" useByScannerDiscovery="false" value="com.st.stm32cube.ide.common.services.build.inputs.revA.1.0.6 || Release || false || Executable || com.st.stm32cube.ide.mcu.gnu.managedbuild.option.toolchain.value.workspace || B-L475E-IOT01A2 || 0 || 0 || arm-none-eabi- || ${gnu_tools_for_stm32_compiler_path} || ../Core/Inc | ../Drivers/STM32L4xx_HAL_Driver/Inc | ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy | ../Drivers/CMSIS/Device/ST/STM32L4xx/Include | ../Drivers/CMSIS/Include | ../Drivers/BSP/Components/lis3mdl | ../X-CUBE-MEMS1/Target | ../Drivers/BSP/B-L475E-IOT01A2 | ../Drivers/BSP/Components/hts221 | ../Drivers/BSP/Components/lsm6dsl | ../BlueNRG_MS/App | ../BlueNRG_MS/Target | ../Middlewares/ST/BlueNRG-MS/utils | ../Middlewares/ST/BlueNRG-MS/includes | ../Middlewares/ST/BlueNRG-MS/hci/hci_tl_patterns/Basic ||  ||  || USE_HAL_DRIVER | STM32L475xx ||  || BlueNRG_MS | Drivers | X-CUBE-MEMS1 | Core/Startup | Middlewares | Core ||  ||  || ${workspace_loc:/${ProjName}/STM32L475VGTX_FLASH.ld} || true || NonSecure ||  || secure_nsclib.o ||  || None ||  ||  || " valueType="string"/>
 							<option id="com.st.stm32cube.ide.mcu.debug.option.cpuclock.132832307" name="Cpu clock frequence" superClass="com.st.stm32cube.ide.mcu.debug.option.cpuclock" useByScannerDiscovery="false" value="80" valueType="string"/>
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.targetplatform.658400264" isAbstract="false" osList="all" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.targetplatform"/>
 							<builder buildPath="${workspace_loc:/testtest}/Release" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.builder.1019806025" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" parallelBuildOn="true" parallelizationNumber="optimal" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.builder"/>
@@ -136,6 +143,11 @@
 									<listOptionValue builtIn="false" value="../Drivers/BSP/B-L475E-IOT01A2"/>
 									<listOptionValue builtIn="false" value="../Drivers/BSP/Components/hts221"/>
 									<listOptionValue builtIn="false" value="../Drivers/BSP/Components/lsm6dsl"/>
+									<listOptionValue builtIn="false" value="../BlueNRG_MS/App"/>
+									<listOptionValue builtIn="false" value="../BlueNRG_MS/Target"/>
+									<listOptionValue builtIn="false" value="../Middlewares/ST/BlueNRG-MS/utils"/>
+									<listOptionValue builtIn="false" value="../Middlewares/ST/BlueNRG-MS/includes"/>
+									<listOptionValue builtIn="false" value="../Middlewares/ST/BlueNRG-MS/hci/hci_tl_patterns/Basic"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1933380528" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -162,8 +174,10 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="BlueNRG_MS"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="X-CUBE-MEMS1"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 					</sourceEntries>
 				</configuration>
