@@ -44,3 +44,15 @@ BLE_SendMessage();- odpowiada za wysłanie wiadomości
 **Odbiór testowej informacji**
 
 <img width="424" height="651" alt="image" src="https://github.com/user-attachments/assets/17bdcab9-95e8-4161-af5d-2771ff92fc27" />
+
+## Prezentacja wyników
+
+Plik jason_STM.c odpowiada za konstrukcję (formatowanie) danych pomiarowych. Funkcja json_create() przyjmuje nazwę parametru i jego wartość, a następnie zapisuje gotowy obiekt JSON do bufora tekstowego.
+Funkcja korzysta z snprintf() do bezpiecznego formatowania danych w postaci tekstu JSON.
+Jeśli długość wynikowego łańcucha przekroczy rozmiar bufora lub nastąpi błąd formatowania, funkcja zwraca kod błędu.
+
+<img width="748" height="326" alt="Zrzut ekranu 2025-11-5 o 18 34 37" src="https://github.com/user-attachments/assets/a93cb34e-984e-43ac-bfc7-a6239a748c1a" />
+
+## Agregacja danych
+
+Plik sensor_data.c integruje trzy czujniki i przygotowuje wyniki pomiarowe w formacie JSON. Funkcja Sensor_GetData() odczytuje bieżące wartości pomiarowe z czujników LSM6DSL, HTS221 i LIS3MDL, a następnie zapisuje je do wspólnej struktury SensorData_t. Z czujnika LSM6DSL pobierane są dane z akcelerometru i żyroskopu (osie X, Y, Z), z HTS221 – temperatura i wilgotność powietrza, natomiast z LIS3MDL – wartości pola magnetycznego w trzech osiach. Każdy pomiar jest sprawdzany pod kątem poprawności, a w przypadku błędu funkcja zwraca kod -1. Następnie wynikowe fragmenty są łączone przy użyciu snprintf().
