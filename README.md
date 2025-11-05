@@ -8,6 +8,7 @@ Wszystkie czujniki komunikują się z mikrokontrolerem przez magistralę **I2C2*
 - **HTS221** – mierzy temperaturę i wilgotność powietrza.  
 - **LIS3MDL** – magnetometr służący do pomiaru pola magnetycznego.  
 - **LSM6DSL** – czujnik inercyjny łączący akcelerometr i żyroskop, umożliwia pomiar przyspieszeń i prędkości kątowych.
+- **SPBTLE-RF** - moduł bluetooth
 
 ## Działanie programu
 
@@ -27,4 +28,19 @@ Po uruchomieniu mikrokontrolera każdy czujnik jest inicjalizowany. Użyktkownic
 ### lsm6dsl_conf.c
 <img width="780" height="342" alt="Zrzut ekranu 2025-11-5 o 15 18 15" src="https://github.com/user-attachments/assets/504d670b-cc70-498a-a9e7-70b1cb972dac" />
 
+### BLE_conf.c
+<img width="811" height="359" alt="image" src="https://github.com/user-attachments/assets/4131df61-b3ab-4141-9a0a-9377e6541983" />
+
 **Do każego z plików .c powstał odpowiedni plik nagłówkowy, każdy z plików .c ma funkcję pozwalającą na testy prawidłowej inicjalizacji sensorów oraz wyświetlenie pomiarów w terminalu.**
+
+### Komunikacja bluetooth
+
+MX_BlueNRG_MS_Init();- funkcja odpowiedzialna za inicjalizację stosu BLE, inicjalizację wartsy HCI, ustawienie adresu MAC oraz rozpoczyna advertising
+MX_BlueNRG_MS_Process();- odpowiada za przetwarzanie zdarzeń BLE takich jak połączenia, rozłączenia, odczyty i zapisy charakterystyk oraz komunikację
+BLE_SendMessage();- odpowiada za wysłanie wiadomości
+
+**Do komunikacji z mikrokontrolerem wykorzystano aplikację nRF Connect.**
+
+**Odbiór testowej informacji**
+
+<img width="424" height="651" alt="image" src="https://github.com/user-attachments/assets/17bdcab9-95e8-4161-af5d-2771ff92fc27" />
