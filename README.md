@@ -16,13 +16,15 @@ Po uruchomieniu mikrokontrolera każdy czujnik jest inicjalizowany. Użyktkownic
 - wektor pola magnetycznego z LIS3MDL
 - przyspieszenie i prędkość kątowa z LSM6DSL
 
-## Inicjalizacja
+## Opis plików źródłowych
 
-### HTS221
+### hts221_conf.c
 <img width="915" height="250" alt="Zrzut ekranu 2025-11-5 o 15 16 58" src="https://github.com/user-attachments/assets/60ebad96-e0c1-4f2f-b504-41fa3f2a3a08" />
 
-### LIS3MDL
+### lis3mdl_conf.c
 <img width="843" height="287" alt="Zrzut ekranu 2025-11-5 o 15 17 41" src="https://github.com/user-attachments/assets/4fc413f4-73d7-4188-9369-7fe11e540cc6" />
 
-### LSM6DSL
+### lsm6dsl_conf.c
 <img width="780" height="342" alt="Zrzut ekranu 2025-11-5 o 15 18 15" src="https://github.com/user-attachments/assets/504d670b-cc70-498a-a9e7-70b1cb972dac" />
+
+**Do każego z plików .c powstał odpowiedni plik nagłówkowy, każdy z plików .c ma funkcję pozwalającą na testy prawidłowej inicjalizacji sensorów oraz wyświetlenie pomiarów w terminalu.**
