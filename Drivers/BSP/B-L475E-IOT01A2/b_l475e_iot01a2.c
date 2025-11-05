@@ -71,9 +71,9 @@ UART_HandleTypeDef hcom_uart[COMn];
 static COM_TypeDef COM_ActiveLogPort;
 #endif
 #if (USE_HAL_UART_REGISTER_CALLBACKS == 1U)
-static uint32_t IsUsart1MspCbValid = 0;
+static uint32_t IsUsart3MspCbValid = 0;
 #endif
-__weak HAL_StatusTypeDef MX_USART1_UART_Init(UART_HandleTypeDef* huart);
+__weak HAL_StatusTypeDef MX_USART3_UART_Init(UART_HandleTypeDef* huart);
 /**
  * @}
  */
@@ -84,8 +84,8 @@ __weak HAL_StatusTypeDef MX_USART1_UART_Init(UART_HandleTypeDef* huart);
 static void BUTTON_USER_EXTI_Callback(void);
 static void BUTTON_USER_GPIO_Init(void);
 #if (USE_BSP_COM_FEATURE > 0)
-static void USART1_MspInit(UART_HandleTypeDef *huart);
-static void USART1_MspDeInit(UART_HandleTypeDef *huart);
+static void USART3_MspInit(UART_HandleTypeDef *huart);
+static void USART3_MspDeInit(UART_HandleTypeDef *huart);
 #endif
 /**
  * @brief  This method returns the STM32L4xx NUCLEO BSP Driver revision
@@ -373,9 +373,9 @@ int32_t BSP_COM_Init(COM_TypeDef COM)
      hcom_uart[COM].Instance = COM_USART[COM];
 #if (USE_HAL_UART_REGISTER_CALLBACKS == 0U)
     /* Init the UART Msp */
-    USART1_MspInit(&hcom_uart[COM]);
+    USART3_MspInit(&hcom_uart[COM]);
 #else
-    if(IsUsart1MspCbValid == 0U)
+    if(IsUsart3MspCbValid == 0U)
     {
       if(BSP_COM_RegisterDefaultMspCallbacks(COM) != BSP_ERROR_NONE)
       {
@@ -383,7 +383,7 @@ int32_t BSP_COM_Init(COM_TypeDef COM)
       }
     }
 #endif
-    if (MX_USART1_UART_Init(&hcom_uart[COM]))
+    if (MX_USART3_UART_Init(&hcom_uart[COM]))
     {
       ret = BSP_ERROR_PERIPH_FAILURE;
     }
@@ -412,7 +412,7 @@ int32_t BSP_COM_DeInit(COM_TypeDef COM)
     hcom_uart[COM].Instance = COM_USART[COM];
 
     #if (USE_HAL_UART_REGISTER_CALLBACKS == 0U)
-      USART1_MspDeInit(&hcom_uart[COM]);
+      USART3_MspDeInit(&hcom_uart[COM]);
     #endif /* (USE_HAL_UART_REGISTER_CALLBACKS == 0U) */
 
     if(HAL_UART_DeInit(&hcom_uart[COM]) != HAL_OK)
@@ -433,13 +433,13 @@ int32_t BSP_COM_DeInit(COM_TypeDef COM)
  * @retval HAL error code
  */
 
-/* USART1 init function */
+/* USART3 init function */
 
-__weak HAL_StatusTypeDef MX_USART1_UART_Init(UART_HandleTypeDef* huart)
+__weak HAL_StatusTypeDef MX_USART3_UART_Init(UART_HandleTypeDef* huart)
 {
   HAL_StatusTypeDef ret = HAL_OK;
 
-  huart->Instance = USART1;
+  huart->Instance = USART3;
   huart->Init.BaudRate = 115200;
   huart->Init.WordLength = UART_WORDLENGTH_8B;
   huart->Init.StopBits = UART_STOPBITS_1;
@@ -460,7 +460,7 @@ __weak HAL_StatusTypeDef MX_USART1_UART_Init(UART_HandleTypeDef* huart)
 #endif
 #if (USE_HAL_UART_REGISTER_CALLBACKS == 1U)
 /**
- * @brief Register Default USART1 Bus Msp Callbacks
+ * @brief Register Default USART3 Bus Msp Callbacks
  * @retval BSP status
  */
 int32_t BSP_COM_RegisterDefaultMspCallbacks(COM_TypeDef COM)
@@ -477,17 +477,17 @@ int32_t BSP_COM_RegisterDefaultMspCallbacks(COM_TypeDef COM)
     __HAL_UART_RESET_HANDLE_STATE(&hcom_uart[COM]);
 
     /* Register default MspInit/MspDeInit Callback */
-    if(HAL_UART_RegisterCallback(&hcom_uart[COM], HAL_UART_MSPINIT_CB_ID, USART1_MspInit) != HAL_OK)
+    if(HAL_UART_RegisterCallback(&hcom_uart[COM], HAL_UART_MSPINIT_CB_ID, USART3_MspInit) != HAL_OK)
     {
       ret = BSP_ERROR_PERIPH_FAILURE;
     }
-    else if(HAL_UART_RegisterCallback(&hcom_uart[COM], HAL_UART_MSPDEINIT_CB_ID, USART1_MspDeInit) != HAL_OK)
+    else if(HAL_UART_RegisterCallback(&hcom_uart[COM], HAL_UART_MSPDEINIT_CB_ID, USART3_MspDeInit) != HAL_OK)
     {
       ret = BSP_ERROR_PERIPH_FAILURE;
     }
     else
     {
-      IsUsart1MspCbValid = 1U;
+      IsUsart3MspCbValid = 1U;
     }
   }
 
@@ -496,8 +496,8 @@ int32_t BSP_COM_RegisterDefaultMspCallbacks(COM_TypeDef COM)
 }
 
 /**
- * @brief Register USART1 Bus Msp Callback registering
- * @param Callbacks pointer to USART1 MspInit/MspDeInit callback functions
+ * @brief Register USART3 Bus Msp Callback registering
+ * @param Callbacks pointer to USART3 MspInit/MspDeInit callback functions
  * @retval BSP status
  */
 int32_t BSP_COM_RegisterMspCallbacks (COM_TypeDef COM , BSP_COM_Cb_t *Callback)
@@ -523,7 +523,7 @@ int32_t BSP_COM_RegisterMspCallbacks (COM_TypeDef COM , BSP_COM_Cb_t *Callback)
     }
     else
     {
-      IsUsart1MspCbValid = 1U;
+      IsUsart3MspCbValid = 1U;
     }
   }
 
@@ -593,77 +593,71 @@ int __io_putchar (int ch)
 #endif /* For IAR */
 #endif /* USE_COM_LOG */
 /**
- * @brief  Initializes USART1 MSP.
- * @param  huart USART1 handle
+ * @brief  Initializes USART3 MSP.
+ * @param  huart USART3 handle
  * @retval None
  */
 
-static void USART1_MspInit(UART_HandleTypeDef* uartHandle)
+static void USART3_MspInit(UART_HandleTypeDef* uartHandle)
 {
   GPIO_InitTypeDef GPIO_InitStruct;
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
-  /* USER CODE BEGIN USART1_MspInit 0 */
+  /* USER CODE BEGIN USART3_MspInit 0 */
 
-  /* USER CODE END USART1_MspInit 0 */
+  /* USER CODE END USART3_MspInit 0 */
 
   /** Initializes the peripherals clock
   */
-    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1;
-    PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK2;
+    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART3;
+    PeriphClkInit.Usart3ClockSelection = RCC_USART3CLKSOURCE_PCLK1;
     HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit);
 
     /* Enable Peripheral clock */
-    __HAL_RCC_USART1_CLK_ENABLE();
+    __HAL_RCC_USART3_CLK_ENABLE();
 
-    __HAL_RCC_GPIOB_CLK_ENABLE();
-    /**USART1 GPIO Configuration
-    PB6     ------> USART1_TX
-    PB7     ------> USART1_RX
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+    /**USART3 GPIO Configuration
+    PD8     ------> USART3_TX
+    PD9     ------> USART3_RX
     */
-    GPIO_InitStruct.Pin = BUS_USART1_TX_GPIO_PIN;
+    GPIO_InitStruct.Pin = BUS_USART3_TX_GPIO_PIN;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = BUS_USART1_TX_GPIO_AF;
-    HAL_GPIO_Init(BUS_USART1_TX_GPIO_PORT, &GPIO_InitStruct);
+    GPIO_InitStruct.Alternate = BUS_USART3_TX_GPIO_AF;
+    HAL_GPIO_Init(BUS_USART3_TX_GPIO_PORT, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = BUS_USART1_RX_GPIO_PIN;
+    GPIO_InitStruct.Pin = BUS_USART3_RX_GPIO_PIN;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = BUS_USART1_RX_GPIO_AF;
-    HAL_GPIO_Init(BUS_USART1_RX_GPIO_PORT, &GPIO_InitStruct);
+    GPIO_InitStruct.Alternate = BUS_USART3_RX_GPIO_AF;
+    HAL_GPIO_Init(BUS_USART3_RX_GPIO_PORT, &GPIO_InitStruct);
 
-    /* Peripheral interrupt init */
-    HAL_NVIC_SetPriority(USART1_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(USART1_IRQn);
-  /* USER CODE BEGIN USART1_MspInit 1 */
+  /* USER CODE BEGIN USART3_MspInit 1 */
 
-  /* USER CODE END USART1_MspInit 1 */
+  /* USER CODE END USART3_MspInit 1 */
 }
 
-static void USART1_MspDeInit(UART_HandleTypeDef* uartHandle)
+static void USART3_MspDeInit(UART_HandleTypeDef* uartHandle)
 {
-  /* USER CODE BEGIN USART1_MspDeInit 0 */
+  /* USER CODE BEGIN USART3_MspDeInit 0 */
 
-  /* USER CODE END USART1_MspDeInit 0 */
+  /* USER CODE END USART3_MspDeInit 0 */
     /* Peripheral clock disable */
-    __HAL_RCC_USART1_CLK_DISABLE();
+    __HAL_RCC_USART3_CLK_DISABLE();
 
-    /**USART1 GPIO Configuration
-    PB6     ------> USART1_TX
-    PB7     ------> USART1_RX
+    /**USART3 GPIO Configuration
+    PD8     ------> USART3_TX
+    PD9     ------> USART3_RX
     */
-    HAL_GPIO_DeInit(BUS_USART1_TX_GPIO_PORT, BUS_USART1_TX_GPIO_PIN);
+    HAL_GPIO_DeInit(BUS_USART3_TX_GPIO_PORT, BUS_USART3_TX_GPIO_PIN);
 
-    HAL_GPIO_DeInit(BUS_USART1_RX_GPIO_PORT, BUS_USART1_RX_GPIO_PIN);
+    HAL_GPIO_DeInit(BUS_USART3_RX_GPIO_PORT, BUS_USART3_RX_GPIO_PIN);
 
-    /* Peripheral interrupt Deinit*/
-    HAL_NVIC_DisableIRQ(USART1_IRQn);
+  /* USER CODE BEGIN USART3_MspDeInit 1 */
 
-  /* USER CODE BEGIN USART1_MspDeInit 1 */
-
-  /* USER CODE END USART1_MspDeInit 1 */
+  /* USER CODE END USART3_MspDeInit 1 */
 }
 
 /**

@@ -53,7 +53,7 @@ DFSDM_Channel_HandleTypeDef hdfsdm1_channel1;
 
 QSPI_HandleTypeDef hqspi;
 
-UART_HandleTypeDef huart3;
+UART_HandleTypeDef huart1;
 
 PCD_HandleTypeDef hpcd_USB_OTG_FS;
 
@@ -67,7 +67,7 @@ static void MX_GPIO_Init(void);
 static void MX_DFSDM1_Init(void);
 static void MX_QUADSPI_Init(void);
 static void MX_USB_OTG_FS_PCD_Init(void);
-static void MX_USART3_UART_Init(void);
+static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -109,7 +109,7 @@ int main(void)
   MX_DFSDM1_Init();
   MX_QUADSPI_Init();
   MX_USB_OTG_FS_PCD_Init();
-  MX_USART3_UART_Init();
+  MX_USART1_UART_Init();
   MX_BlueNRG_MS_Init();
   /* USER CODE BEGIN 2 */
   BSP_I2C2_Init();
@@ -122,27 +122,22 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  /*
-	  HTS221_Read_Data();
-	  LSM6DSL_Read_Data();
-	  LIS3MDL_Read_Magnetic();
+	HTS221_Read_Data();
+	LSM6DSL_Read_Data();
+	LIS3MDL_Read_Magnetic();
+	HAL_Delay(1000);
 
-	    while (1)
-	    {
-	        if (j_johnson(json_buffer, sizeof(json_buffer)) == 0)
-	        {
-	            //HAL_UART_Transmit(&huart1, (uint8_t*)json_buffer, strlen(json_buffer), HAL_MAX_DELAY);
-	        }
-	        HAL_Delay(500);
-	    }
-	  HAL_Delay(1000);
-	   */
+	if (j_johnson(json_buffer, sizeof(json_buffer)) == 0)
+	{
+		HAL_UART_Transmit(&huart1, (uint8_t*)json_buffer, strlen(json_buffer), HAL_MAX_DELAY);
+	}
+	HAL_Delay(1000);
     /* USER CODE END WHILE */
 
-  MX_BlueNRG_MS_Process(); //funkcja odpowiedzialna za połączenie bt
+  MX_BlueNRG_MS_Process();
     /* USER CODE BEGIN 3 */
   BLE_SendMessage("Hello from STM"); //Max 20 znaków
-  HAL_Delay(2000);
+  //HAL_Delay(2000);
   }
   /* USER CODE END 3 */
 }
@@ -279,37 +274,37 @@ static void MX_QUADSPI_Init(void)
 }
 
 /**
-  * @brief USART3 Initialization Function
+  * @brief USART1 Initialization Function
   * @param None
   * @retval None
   */
-static void MX_USART3_UART_Init(void)
+static void MX_USART1_UART_Init(void)
 {
 
-  /* USER CODE BEGIN USART3_Init 0 */
+  /* USER CODE BEGIN USART1_Init 0 */
 
-  /* USER CODE END USART3_Init 0 */
+  /* USER CODE END USART1_Init 0 */
 
-  /* USER CODE BEGIN USART3_Init 1 */
+  /* USER CODE BEGIN USART1_Init 1 */
 
-  /* USER CODE END USART3_Init 1 */
-  huart3.Instance = USART3;
-  huart3.Init.BaudRate = 115200;
-  huart3.Init.WordLength = UART_WORDLENGTH_8B;
-  huart3.Init.StopBits = UART_STOPBITS_1;
-  huart3.Init.Parity = UART_PARITY_NONE;
-  huart3.Init.Mode = UART_MODE_TX_RX;
-  huart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart3.Init.OverSampling = UART_OVERSAMPLING_16;
-  huart3.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart3.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_UART_Init(&huart3) != HAL_OK)
+  /* USER CODE END USART1_Init 1 */
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN USART3_Init 2 */
+  /* USER CODE BEGIN USART1_Init 2 */
 
-  /* USER CODE END USART3_Init 2 */
+  /* USER CODE END USART1_Init 2 */
 
 }
 

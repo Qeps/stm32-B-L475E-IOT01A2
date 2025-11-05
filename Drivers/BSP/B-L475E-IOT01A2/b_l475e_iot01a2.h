@@ -131,20 +131,20 @@
  * @{
  */
 /**
- * @brief Definition for COM portx, connected to USART1
+ * @brief Definition for COM portx, connected to USART3
  */
 
-#define BUS_USART1_INSTANCE USART1
-#define BUS_USART1_TX_GPIO_PIN GPIO_PIN_6
-#define BUS_USART1_TX_GPIO_PORT GPIOB
-#define BUS_USART1_TX_GPIO_CLK_ENABLE() __HAL_RCC_GPIOB_CLK_ENABLE()
-#define BUS_USART1_TX_GPIO_CLK_DISABLE() __HAL_RCC_GPIOB_CLK_DISABLE()
-#define BUS_USART1_TX_GPIO_AF GPIO_AF7_USART1
-#define BUS_USART1_RX_GPIO_CLK_ENABLE() __HAL_RCC_GPIOB_CLK_ENABLE()
-#define BUS_USART1_RX_GPIO_PORT GPIOB
-#define BUS_USART1_RX_GPIO_CLK_DISABLE() __HAL_RCC_GPIOB_CLK_DISABLE()
-#define BUS_USART1_RX_GPIO_PIN GPIO_PIN_7
-#define BUS_USART1_RX_GPIO_AF GPIO_AF7_USART1
+#define BUS_USART3_INSTANCE USART3
+#define BUS_USART3_TX_GPIO_CLK_ENABLE() __HAL_RCC_GPIOD_CLK_ENABLE()
+#define BUS_USART3_TX_GPIO_CLK_DISABLE() __HAL_RCC_GPIOD_CLK_DISABLE()
+#define BUS_USART3_TX_GPIO_AF GPIO_AF7_USART3
+#define BUS_USART3_TX_GPIO_PORT GPIOD
+#define BUS_USART3_TX_GPIO_PIN GPIO_PIN_8
+#define BUS_USART3_RX_GPIO_PIN GPIO_PIN_9
+#define BUS_USART3_RX_GPIO_CLK_DISABLE() __HAL_RCC_GPIOD_CLK_DISABLE()
+#define BUS_USART3_RX_GPIO_PORT GPIOD
+#define BUS_USART3_RX_GPIO_AF GPIO_AF7_USART3
+#define BUS_USART3_RX_GPIO_CLK_ENABLE() __HAL_RCC_GPIOD_CLK_ENABLE()
 
 /**
  * @}
@@ -246,11 +246,11 @@ typedef struct
  */
 
 #define COMn                             1U
-#define COM1_UART                        USART1
+#define COM1_UART                        USART3
 
 #define COM_POLL_TIMEOUT                 1000
 extern UART_HandleTypeDef hcom_uart[COMn];
-#define  huart1 hcom_uart[COM1]
+#define  huart3 hcom_uart[COM1]
 
 /**
  * @}
